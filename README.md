@@ -1,6 +1,6 @@
-# Lucy Certificate Generator
+# Lucy Doctor's Sick Note Generator
 
-A web-based medical certificate generator for Mama Lucy Kibaki Hospital that creates professional, printable medical certificates for patients.
+A web-based medical certificate generator for *Hospital that creates professional, printable medical certificates for patients.
 
 ## Features
 
