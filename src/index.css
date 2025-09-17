@@ -127,3 +127,140 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Print Styles for Medical Certificate */
+  @media print {
+    @page {
+      margin: 1cm;
+      size: A4;
+    }
+    
+    body {
+      font-family: 'Times New Roman', serif !important;
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+      color: black !important;
+      background: white !important;
+    }
+    
+    .print-certificate {
+      border: 2px solid #1a5f7a !important;
+      padding: 30px !important;
+      border-radius: 0 !important;
+      background: white !important;
+      box-shadow: none !important;
+      margin: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+    }
+    
+    .print-certificate .certificate-header {
+      text-align: center !important;
+      margin-bottom: 25px !important;
+      padding-bottom: 15px !important;
+      border-bottom: 2px solid #1a5f7a !important;
+    }
+    
+    .print-certificate .hospital-name {
+      font-size: 24px !important;
+      font-weight: bold !important;
+      color: #1a5f7a !important;
+      margin-bottom: 5px !important;
+    }
+    
+    .print-certificate .hospital-address {
+      font-size: 16px !important;
+      margin-bottom: 5px !important;
+      color: black !important;
+    }
+    
+    .print-certificate .document-title {
+      font-size: 20px !important;
+      font-weight: bold !important;
+      margin: 15px 0 !important;
+      text-decoration: underline !important;
+      color: #1a5f7a !important;
+    }
+    
+    .print-certificate .reference-info {
+      display: flex !important;
+      justify-content: space-between !important;
+      margin-bottom: 20px !important;
+      font-size: 14px !important;
+      color: black !important;
+    }
+    
+    .print-certificate .patient-details {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 15px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .print-certificate .detail-item {
+      margin-bottom: 10px !important;
+      color: black !important;
+    }
+    
+    .print-certificate .detail-label {
+      font-weight: bold !important;
+      display: inline-block !important;
+      min-width: 140px !important;
+    }
+    
+    .print-certificate .assessment-section {
+      margin: 20px 0 !important;
+      color: black !important;
+    }
+    
+    .print-certificate .physician-section {
+      margin-top: 30px !important;
+      padding-top: 20px !important;
+      border-top: 1px solid #666 !important;
+    }
+    
+    .print-certificate .signature-line {
+      margin-top: 60px !important;
+      border-top: 1px solid #333 !important;
+      width: 300px !important;
+    }
+    
+    .print-certificate .authentication {
+      margin-top: 20px !important;
+      font-size: 12px !important;
+      color: #666 !important;
+    }
+    
+    .print-certificate .qr-code {
+      margin: 15px 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+    }
+    
+    .print-certificate .logo {
+      width: 60px !important;
+      height: 70px !important;
+      margin-bottom: 10px !important;
+    }
+    
+    .print-certificate canvas {
+      border: 1px solid #ccc !important;
+    }
+    
+    /* Hide non-printable elements */
+    .no-print {
+      display: none !important;
+    }
+    
+    /* Ensure text is black for printing */
+    .print-certificate * {
+      color: black !important;
+    }
+    
+    .print-certificate .hospital-name,
+    .print-certificate .document-title {
+      color: #1a5f7a !important;
+    }
+  }
+}
