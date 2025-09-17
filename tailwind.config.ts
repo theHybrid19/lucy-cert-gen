@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -30,6 +31,20 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        medical: {
+          blue: "hsl(var(--medical-blue))",
+          light: "hsl(var(--medical-light))",
+          accent: "hsl(var(--medical-accent))",
+        },
+        certificate: {
+          bg: "hsl(var(--certificate-bg))",
+          border: "hsl(var(--certificate-border))",
+          header: "hsl(var(--certificate-header))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -62,6 +77,15 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        certificate: "calc(var(--radius) + 2px)",
+      },
+      backgroundImage: {
+        "gradient-medical": "var(--gradient-medical)",
+        "gradient-header": "var(--gradient-header)",
+      },
+      boxShadow: {
+        card: "var(--shadow-card)",
+        certificate: "var(--shadow-certificate)",
       },
       keyframes: {
         "accordion-down": {
