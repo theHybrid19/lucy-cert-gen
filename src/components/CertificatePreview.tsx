@@ -162,31 +162,45 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
             <div className="space-y-4">
               <p><strong>TO WHOM IT MAY CONCERN,</strong></p>
               <p>
-                This certifies that {getSalutation(data.patientSex)} {data.patientName} was attended to at the Prime Care Centre/Corporate Out-Patient Clinic and found{' '}
-                <strong>{data.fitness === 'fit' ? 'fit to attend his/her duties' : 'unfit to attend his/her duties'}</strong>.
+                Following medical examination, {getSalutation(data.patientSex)} {data.patientName} has been assessed at the Prime Care Centre/Corporate Out-Patient Clinic.
               </p>
               
-              {data.fitness === 'unfit' && (
+              <div className="my-4 p-3 bg-gray-50 border-l-4 border-medical-blue">
+                <p className="font-semibold">Medical Assessment:</p>
+                {data.fitness === 'cleared' ? (
+                  <p>The patient is <strong>medically cleared for work</strong> and may resume normal duties.</p>
+                ) : (
+                  <p>The patient <strong>requires medical leave</strong> and is advised to refrain from work activities during the treatment period.</p>
+                )}
+              </div>
+              
+              {data.fitness === 'medical-leave' && (
                 <div className="assessment-section space-y-2">
                   <p>
-                    The patient has been granted <strong>{data.leaveDays}</strong> days off duty with effect from <strong>{formatDate(data.leaveFrom)}</strong>.
+                    <strong>Recommended medical leave:</strong> {data.leaveDays} days, effective from {formatDate(data.leaveFrom)} to {formatDate(data.leaveTo)}.
                   </p>
                   <p>
-                    To resume duties on <strong>{formatDate(data.resumeDate)}</strong> and come for review on{' '}
-                    <strong>{data.reviewDate ? formatDate(data.reviewDate) : 'N/A'}</strong>.
+                    <strong>Recommended return to work date:</strong> {formatDate(data.resumeDate)}
                   </p>
+                  {data.reviewDate && (
+                    <p>
+                      <strong>Follow-up appointment scheduled:</strong> {formatDate(data.reviewDate)}
+                    </p>
+                  )}
                 </div>
               )}
 
-              {data.fitness === 'fit' && data.resumeDateFit && (
-                <p>
-                  To resume duties on <strong>{formatDate(data.resumeDateFit)}</strong>.
-                </p>
+              {data.fitness === 'cleared' && data.resumeDateFit && (
+                <div className="assessment-section">
+                  <p>
+                    <strong>Cleared to return to work on:</strong> {formatDate(data.resumeDateFit)}
+                  </p>
+                </div>
               )}
               
-              <div>
-                <p><strong>Specific Recommendations/Restrictions:</strong></p>
-                <p>{data.recommendations || 'None'}</p>
+              <div className="mt-4">
+                <p><strong>Clinical Recommendations & Work Restrictions:</strong></p>
+                <p className="mt-1 italic">{data.recommendations || 'No specific restrictions noted.'}</p>
               </div>
             </div>
 

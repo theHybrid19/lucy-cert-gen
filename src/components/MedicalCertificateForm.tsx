@@ -44,7 +44,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
     clinicReference: "KNH/KPCC/021",
     employer: "",
     diagnosis: "",
-    fitness: "unfit",
+  fitness: "medical-leave",
     leaveDays: "1",
     leaveFrom: "2025-09-12",
     leaveTo: "2025-09-12",
@@ -56,10 +56,10 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
     licenseNo: "MPDB NO. A16013"
   });
 
-  const [showUnfitDetails, setShowUnfitDetails] = useState(true);
+  const [showMedicalLeaveDetails, setShowMedicalLeaveDetails] = useState(true);
 
   useEffect(() => {
-    setShowUnfitDetails(formData.fitness === "unfit");
+    setShowMedicalLeaveDetails(formData.fitness === "medical-leave");
   }, [formData.fitness]);
 
   useEffect(() => {
@@ -239,9 +239,9 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
             </div>
           </div>
 
-          {/* Fitness Assessment */}
+          {/* Medical Assessment */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-medical-blue">Assessment of Fitness</h3>
+            <h3 className="text-lg font-semibold text-medical-blue">Medical Assessment & Recommendations</h3>
             
             <RadioGroup
               value={formData.fitness}
@@ -249,19 +249,19 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
               className="flex gap-6"
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="fit" id="fit" />
-                <Label htmlFor="fit" className="font-medium">FIT for duty</Label>
+                <RadioGroupItem value="cleared" id="cleared" />
+                <Label htmlFor="cleared" className="font-medium">Medically cleared for work</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="unfit" id="unfit" />
-                <Label htmlFor="unfit" className="font-medium">UNFIT for duty</Label>
+                <RadioGroupItem value="medical-leave" id="medical-leave" />
+                <Label htmlFor="medical-leave" className="font-medium">Requires medical leave</Label>
               </div>
             </RadioGroup>
 
-            {showUnfitDetails && (
+            {showMedicalLeaveDetails && (
               <div className="space-y-4 p-4 bg-muted rounded-lg">
                 <div>
-                  <Label htmlFor="leaveDays" className="text-medical-blue font-medium">Number of Leave Days</Label>
+                  <Label htmlFor="leaveDays" className="text-medical-blue font-medium">Recommended Leave Duration (Days)</Label>
                   <Input
                     id="leaveDays"
                     type="number"
@@ -274,7 +274,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="leaveFrom" className="text-medical-blue font-medium">Leave From</Label>
+                    <Label htmlFor="leaveFrom" className="text-medical-blue font-medium">Leave Start Date</Label>
                     <Input
                       id="leaveFrom"
                       type="date"
@@ -284,7 +284,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
                     />
                   </div>
                   <div>
-                    <Label htmlFor="leaveTo" className="text-medical-blue font-medium">Leave To</Label>
+                    <Label htmlFor="leaveTo" className="text-medical-blue font-medium">Leave End Date</Label>
                     <Input
                       id="leaveTo"
                       type="date"
@@ -296,7 +296,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
                 </div>
 
                 <div>
-                  <Label htmlFor="resumeDate" className="text-medical-blue font-medium">Date to Resume Duty</Label>
+                  <Label htmlFor="resumeDate" className="text-medical-blue font-medium">Recommended Return to Work Date</Label>
                   <Input
                     id="resumeDate"
                     type="date"
@@ -307,7 +307,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
                 </div>
 
                 <div>
-                  <Label htmlFor="reviewDate" className="text-medical-blue font-medium">Review Appointment Date</Label>
+                  <Label htmlFor="reviewDate" className="text-medical-blue font-medium">Follow-up Appointment Date</Label>
                   <Input
                     id="reviewDate"
                     type="date"
@@ -319,9 +319,9 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
               </div>
             )}
 
-            {!showUnfitDetails && (
+            {!showMedicalLeaveDetails && (
               <div>
-                <Label htmlFor="resumeDateFit" className="text-medical-blue font-medium">Resume Duty Date</Label>
+                <Label htmlFor="resumeDateFit" className="text-medical-blue font-medium">Cleared to Return on Date</Label>
                 <Input
                   id="resumeDateFit"
                   type="date"
@@ -333,7 +333,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
             )}
 
             <div>
-              <Label htmlFor="recommendations" className="text-medical-blue font-medium">Specific Recommendations/Restrictions</Label>
+              <Label htmlFor="recommendations" className="text-medical-blue font-medium">Clinical Recommendations & Work Restrictions</Label>
               <Textarea
                 id="recommendations"
                 rows={3}
