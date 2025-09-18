@@ -180,15 +180,15 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                 <span className="detail-label font-bold inline-block min-w-[140px]">Doctor's Name:</span>
                 <span>{data.doctorName}</span>
               </div>
-              <div className="signature-section mt-8 flex items-center gap-8">
+              <div className="signature-section mt-8 flex items-end gap-4">
                 <div className="signature-line border-t border-black w-60">
                   <p className="mt-1">Signature</p>
                 </div>
-                <div className="stamp-area">
+                <div className="stamp-area relative">
                   <img 
                     src={doctorStamp} 
                     alt="Doctor's Official Stamp" 
-                    className="w-20 h-20"
+                    className="w-32 h-32 opacity-90"
                   />
                 </div>
               </div>
