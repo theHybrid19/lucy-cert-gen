@@ -258,79 +258,27 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
               </div>
             </RadioGroup>
 
-            {showMedicalLeaveDetails && (
-              <div className="space-y-4 p-4 bg-muted rounded-lg">
-                <div>
-                  <Label htmlFor="leaveDays" className="text-medical-blue font-medium">Recommended Leave Duration (Days)</Label>
-                  <Input
-                    id="leaveDays"
-                    type="number"
-                    min="1"
-                    value={formData.leaveDays}
-                    onChange={(e) => handleInputChange("leaveDays", e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
+            <div>
+              <Label htmlFor="resumeDate" className="text-medical-blue font-medium">Return to Work Date</Label>
+              <Input
+                id="resumeDate"
+                type="date"
+                value={formData.resumeDate}
+                onChange={(e) => handleInputChange("resumeDate", e.target.value)}
+                className="mt-1"
+              />
+            </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="leaveFrom" className="text-medical-blue font-medium">Leave Start Date</Label>
-                    <Input
-                      id="leaveFrom"
-                      type="date"
-                      value={formData.leaveFrom}
-                      onChange={(e) => handleInputChange("leaveFrom", e.target.value)}
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="leaveTo" className="text-medical-blue font-medium">Leave End Date</Label>
-                    <Input
-                      id="leaveTo"
-                      type="date"
-                      value={formData.leaveTo}
-                      onChange={(e) => handleInputChange("leaveTo", e.target.value)}
-                      className="mt-1"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="resumeDate" className="text-medical-blue font-medium">Recommended Return to Work Date</Label>
-                  <Input
-                    id="resumeDate"
-                    type="date"
-                    value={formData.resumeDate}
-                    onChange={(e) => handleInputChange("resumeDate", e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="reviewDate" className="text-medical-blue font-medium">Follow-up Appointment Date</Label>
-                  <Input
-                    id="reviewDate"
-                    type="date"
-                    value={formData.reviewDate}
-                    onChange={(e) => handleInputChange("reviewDate", e.target.value)}
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-            )}
-
-            {!showMedicalLeaveDetails && (
-              <div>
-                <Label htmlFor="resumeDateFit" className="text-medical-blue font-medium">Cleared to Return on Date</Label>
-                <Input
-                  id="resumeDateFit"
-                  type="date"
-                  value={formData.resumeDateFit}
-                  onChange={(e) => handleInputChange("resumeDateFit", e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-            )}
+            <div>
+              <Label htmlFor="reviewDate" className="text-medical-blue font-medium">Follow-up Appointment Date</Label>
+              <Input
+                id="reviewDate"
+                type="date"
+                value={formData.reviewDate}
+                onChange={(e) => handleInputChange("reviewDate", e.target.value)}
+                className="mt-1"
+              />
+            </div>
 
             <div>
               <Label htmlFor="recommendations" className="text-medical-blue font-medium">Clinical Recommendations & Work Restrictions</Label>

@@ -108,11 +108,11 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
               <div className="hospital-name text-2xl font-bold text-certificate-header mb-1">
                 MAMA LUCY KIBAKI HOSPITAL
               </div>
-              <div className="hospital-address text-base mb-1">P.O. Box 20723 - 00202, Nairobi, Kenya</div>
-              <div className="text-sm mb-4">Tel: +254 (0)20 273 0XXX | www.mamalucykibakihospital.go.ke</div>
+              <div className="hospital-address text-base mb-1">P.O. Box 20723-00202, Nairobi, Kenya</div>
+              <div className="text-sm mb-4">Tel: +254 (0)20 802 2676 | www.mamalucykibakihospital.go.ke</div>
               
               <div className="document-title text-xl font-bold my-4 underline text-certificate-header">
-                DOCTOR'S APPROVAL & MEDICAL CERTIFICATE OF FITNESS
+                DOCTOR'S APPROVAL & MEDICAL ASSESSMENT
               </div>
               
               <div className="reference-info flex justify-between text-sm">
@@ -162,7 +162,7 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
             <div className="space-y-4">
               <p><strong>TO WHOM IT MAY CONCERN,</strong></p>
               <p>
-                Following medical examination, {getSalutation(data.patientSex)} {data.patientName} has been assessed at the Prime Care Centre/Corporate Out-Patient Clinic.
+                Following medical examination, {getSalutation(data.patientSex)} {data.patientName} at our facility, I am confirming their recent treatment. Based on clinical assessment, I recommend that their workplace provide favorable conditions to accommodate their needs as they resume their duties. My signature and stamp below serve as formal medical certification of this request.
               </p>
               
               <div className="my-4 p-3 bg-gray-50 border-l-4 border-medical-blue">
@@ -170,15 +170,12 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                 {data.fitness === 'cleared' ? (
                   <p>The patient is <strong>medically cleared for work</strong> and may resume normal duties.</p>
                 ) : (
-                  <p>The patient <strong>requires medical leave</strong> and is advised to refrain from work activities during the treatment period.</p>
+                  <p>The patient <strong>requires medical leave</strong> to proceed with treatment. My clinical assessment indicates that {getSalutation(data.patientSex)} {data.patientName} has {data.diagnosis}, which requires appropriate medical management.</p>
                 )}
               </div>
               
               {data.fitness === 'medical-leave' && (
                 <div className="assessment-section space-y-2">
-                  <p>
-                    <strong>Recommended medical leave:</strong> {data.leaveDays} days, effective from {formatDate(data.leaveFrom)} to {formatDate(data.leaveTo)}.
-                  </p>
                   <p>
                     <strong>Recommended return to work date:</strong> {formatDate(data.resumeDate)}
                   </p>
@@ -190,17 +187,17 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                 </div>
               )}
 
-              {data.fitness === 'cleared' && data.resumeDateFit && (
+              {data.fitness === 'cleared' && data.resumeDate && (
                 <div className="assessment-section">
                   <p>
-                    <strong>Cleared to return to work on:</strong> {formatDate(data.resumeDateFit)}
+                    <strong>Cleared to return to work on:</strong> {formatDate(data.resumeDate)}
                   </p>
                 </div>
               )}
               
               <div className="mt-4">
                 <p><strong>Clinical Recommendations & Work Restrictions:</strong></p>
-                <p className="mt-1 italic">{data.recommendations || 'No specific restrictions noted.'}</p>
+                <p className="mt-1 italic">{data.recommendations || 'They may require appropriate medical accommodations as needed.'}</p>
               </div>
             </div>
 
