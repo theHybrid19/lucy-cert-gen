@@ -17,13 +17,7 @@ interface FormData {
   clinicReference: string;
   employer: string;
   diagnosis: string;
-  fitness: string;
-  leaveDays: string;
-  leaveFrom: string;
-  leaveTo: string;
-  resumeDate: string;
   reviewDate: string;
-  resumeDateFit: string;
   recommendations: string;
   doctorName: string;
   licenseNo: string;
@@ -44,40 +38,12 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
     clinicReference: "KNH/KPCC/021",
     employer: "",
     diagnosis: "",
-  fitness: "medical-leave",
-    leaveDays: "1",
-    leaveFrom: "2025-09-12",
-    leaveTo: "2025-09-12",
-    resumeDate: "2025-09-13",
     reviewDate: "",
-    resumeDateFit: "",
     recommendations: "",
     doctorName: "Dr. Mand",
     licenseNo: "MPDB NO. A16013"
   });
 
-  const [showMedicalLeaveDetails, setShowMedicalLeaveDetails] = useState(true);
-
-  useEffect(() => {
-    setShowMedicalLeaveDetails(formData.fitness === "medical-leave");
-  }, [formData.fitness]);
-
-  useEffect(() => {
-    if (formData.leaveFrom && formData.leaveDays) {
-      const fromDate = new Date(formData.leaveFrom);
-      const toDate = new Date(fromDate);
-      toDate.setDate(fromDate.getDate() + parseInt(formData.leaveDays) - 1);
-      
-      const resumeDate = new Date(toDate);
-      resumeDate.setDate(resumeDate.getDate() + 1);
-      
-      setFormData(prev => ({
-        ...prev,
-        leaveTo: toDate.toISOString().split('T')[0],
-        resumeDate: resumeDate.toISOString().split('T')[0]
-      }));
-    }
-  }, [formData.leaveFrom, formData.leaveDays]);
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
@@ -101,13 +67,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
       clinicReference: "",
       employer: "",
       diagnosis: "",
-      fitness: "unfit",
-      leaveDays: "1",
-      leaveFrom: "",
-      leaveTo: "",
-      resumeDate: "",
       reviewDate: "",
-      resumeDateFit: "",
       recommendations: "",
       doctorName: "",
       licenseNo: ""
@@ -243,32 +203,6 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-medical-blue">Medical Assessment & Recommendations</h3>
             
-            <RadioGroup
-              value={formData.fitness}
-              onValueChange={(value) => handleInputChange("fitness", value)}
-              className="flex gap-6"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="cleared" id="cleared" />
-                <Label htmlFor="cleared" className="font-medium">Medically cleared for work</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="medical-leave" id="medical-leave" />
-                <Label htmlFor="medical-leave" className="font-medium">Requires medical leave</Label>
-              </div>
-            </RadioGroup>
-
-            <div>
-              <Label htmlFor="resumeDate" className="text-medical-blue font-medium">Return to Work Date</Label>
-              <Input
-                id="resumeDate"
-                type="date"
-                value={formData.resumeDate}
-                onChange={(e) => handleInputChange("resumeDate", e.target.value)}
-                className="mt-1"
-              />
-            </div>
-
             <div>
               <Label htmlFor="reviewDate" className="text-medical-blue font-medium">Follow-up Appointment Date</Label>
               <Input
@@ -281,7 +215,7 @@ export function MedicalCertificateForm({ onGenerate, onReset }: MedicalCertifica
             </div>
 
             <div>
-              <Label htmlFor="recommendations" className="text-medical-blue font-medium">Clinical Recommendations & Work Restrictions</Label>
+              <Label htmlFor="recommendations" className="text-medical-blue font-medium">Clinical Recommendations</Label>
               <Textarea
                 id="recommendations"
                 rows={3}

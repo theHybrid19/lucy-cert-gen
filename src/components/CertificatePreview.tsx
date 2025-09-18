@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Printer, Eye } from "lucide-react";
 import QRCode from "qrcode";
 import hospitalLogo from "@/assets/hospital-logo.png";
+import doctorStamp from "@/assets/doctor-stamp.png";
 
 interface CertificateData {
   patientName: string;
@@ -14,13 +15,7 @@ interface CertificateData {
   clinicReference: string;
   employer: string;
   diagnosis: string;
-  fitness: string;
-  leaveDays: string;
-  leaveFrom: string;
-  leaveTo: string;
-  resumeDate: string;
   reviewDate: string;
-  resumeDateFit: string;
   recommendations: string;
   doctorName: string;
   licenseNo: string;
@@ -162,42 +157,20 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
             <div className="space-y-4">
               <p><strong>TO WHOM IT MAY CONCERN,</strong></p>
               <p>
-                Following medical examination, {getSalutation(data.patientSex)} {data.patientName} at our facility, I am confirming their recent treatment. Based on clinical assessment, I recommend that their workplace provide favorable conditions to accommodate their needs as they resume their duties. My signature and stamp below serve as formal medical certification of this request.
+                Following medical examination of {getSalutation(data.patientSex)} {data.patientName} at our facility, I am providing this medical advisory based on clinical assessment. My clinical evaluation indicates that {getSalutation(data.patientSex)} {data.patientName} has {data.diagnosis}, which requires appropriate medical management.
               </p>
               
-              <div className="my-4 p-3 bg-gray-50 border-l-4 border-medical-blue">
-                <p className="font-semibold">Medical Assessment:</p>
-                {data.fitness === 'cleared' ? (
-                  <p>The patient is <strong>medically cleared for work</strong> and may resume normal duties.</p>
-                ) : (
-                  <p>The patient <strong>requires medical leave</strong> to proceed with treatment. My clinical assessment indicates that {getSalutation(data.patientSex)} {data.patientName} has {data.diagnosis}, which requires appropriate medical management.</p>
-                )}
-              </div>
-              
-              {data.fitness === 'medical-leave' && (
-                <div className="assessment-section space-y-2">
+              {data.reviewDate && (
+                <div className="assessment-section mt-4">
                   <p>
-                    <strong>Recommended return to work date:</strong> {formatDate(data.resumeDate)}
-                  </p>
-                  {data.reviewDate && (
-                    <p>
-                      <strong>Follow-up appointment scheduled:</strong> {formatDate(data.reviewDate)}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {data.fitness === 'cleared' && data.resumeDate && (
-                <div className="assessment-section">
-                  <p>
-                    <strong>Cleared to return to work on:</strong> {formatDate(data.resumeDate)}
+                    <strong>Follow-up appointment scheduled:</strong> {formatDate(data.reviewDate)}
                   </p>
                 </div>
               )}
               
               <div className="mt-4">
-                <p><strong>Clinical Recommendations & Work Restrictions:</strong></p>
-                <p className="mt-1 italic">{data.recommendations || 'They may require appropriate medical accommodations as needed.'}</p>
+                <p><strong>Clinical Recommendations:</strong></p>
+                <p className="mt-1 italic">{data.recommendations || 'Continue with prescribed treatment and follow medical advice as directed.'}</p>
               </div>
             </div>
 
@@ -207,8 +180,17 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                 <span className="detail-label font-bold inline-block min-w-[140px]">Doctor's Name:</span>
                 <span>{data.doctorName}</span>
               </div>
-              <div className="signature-line mt-16 border-t border-black w-80">
-                <p className="mt-1">Signature</p>
+              <div className="signature-section mt-8 flex items-center gap-8">
+                <div className="signature-line border-t border-black w-60">
+                  <p className="mt-1">Signature</p>
+                </div>
+                <div className="stamp-area">
+                  <img 
+                    src={doctorStamp} 
+                    alt="Doctor's Official Stamp" 
+                    className="w-20 h-20"
+                  />
+                </div>
               </div>
               
               <div className="detail-item mt-4">
