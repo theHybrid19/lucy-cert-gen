@@ -102,9 +102,10 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                 <canvas ref={qrCodeRef} />
               </div>
 
-              {/* Letter Date */}
-              <div className="text-left mb-8">
-                <p className="font-medium">{getCurrentDate()}</p>
+              {/* Patient Name and Date */}
+              <div className="text-left mb-8 space-y-1">
+                <p className="font-medium">Patient Name: {data.patientName}</p>
+                <p className="font-medium">Date: {getCurrentDate()}</p>
               </div>
 
               {/* Letter Content */}
@@ -112,7 +113,7 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                 <p className="font-semibold">To Whom It May Concern,</p>
                 
                 <p className="leading-relaxed">
-                  This patient <strong>{data.patientName}</strong> was admitted under our care on <strong>{formatDate(data.admissionDate)}</strong>. Following assessment, a period of <strong>{data.leaveDuration}</strong> of medical leave is medically recommended to ensure proper recovery.
+                  This is to confirm that the above-named patient was admitted to our care on <strong>{formatDate(data.admissionDate)}</strong>. Following assessment, I therefore recommend a <strong>{data.leaveDuration}</strong> medical leave to assist with their recovery.
                 </p>
                 
                 <div className="mt-12 pt-8">
@@ -124,7 +125,6 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                   </div>
                   <p className="font-semibold">{data.doctorName}</p>
                   <p className="text-muted-foreground">{data.doctorTitle}</p>
-                  <p className="text-muted-foreground">Mama Lucy Kibaki Hospital</p>
                 </div>
               </div>
 
