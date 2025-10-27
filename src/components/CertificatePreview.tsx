@@ -112,11 +112,7 @@ export function CertificatePreview({ data, referenceNumber }: CertificatePreview
                 <p className="font-semibold">To Whom It May Concern,</p>
                 
                 <p className="leading-relaxed">
-                  This is to certify that <strong>{data.patientName}</strong> was admitted to our facility on <strong>{formatDate(data.admissionDate)}</strong>.
-                </p>
-                
-                <p className="leading-relaxed">
-                  I therefore recommend a <strong>{data.leaveDuration}</strong> medical leave to assist with their recovery.
+                  This patient <strong>{data.patientName}</strong> was admitted under our care on <strong>{formatDate(data.admissionDate)}</strong>. Following assessment, a period of <strong>{data.leaveDuration}</strong> of medical leave is medically recommended to ensure proper recovery.
                 </p>
                 
                 <div className="mt-12 pt-8">
