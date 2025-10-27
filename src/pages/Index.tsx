@@ -6,23 +6,10 @@ import { Card, CardContent } from "@/components/ui/card";
 
 interface CertificateData {
   patientName: string;
-  patientID: string;
-  patientAge: string;
-  patientSex: string;
-  examDate: string;
-  clinicReference: string;
-  employer: string;
-  diagnosis: string;
-  fitness: string;
-  leaveDays: string;
-  leaveFrom: string;
-  leaveTo: string;
-  resumeDate: string;
-  reviewDate: string;
-  resumeDateFit: string;
-  recommendations: string;
+  admissionDate: string;
+  leaveDuration: string;
   doctorName: string;
-  licenseNo: string;
+  doctorTitle: string;
 }
 
 const Index = () => {
@@ -56,7 +43,7 @@ const Index = () => {
             />
             <div className="text-center">
               <h1 className="text-3xl font-bold mb-2">Mama Lucy Kibaki Hospital</h1>
-              <p className="text-xl opacity-90">Medical Certificate Generator</p>
+              <p className="text-xl opacity-90">Medical Leave Letter Generator</p>
             </div>
           </div>
         </div>
@@ -87,7 +74,7 @@ const Index = () => {
       <footer className="bg-muted text-center py-6 mt-12">
         <div className="container mx-auto px-4">
           <p className="text-muted-foreground">
-            Mama Lucy Kibaki Hospital © 2024 | Medical Certificate Generator v1.0
+            Mama Lucy Kibaki Hospital © 2025 | Medical Leave Letter Generator v1.0
           </p>
         </div>
       </footer>
